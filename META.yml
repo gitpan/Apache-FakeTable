@@ -1,0 +1,17 @@
+--- #YAML:1.0
+name: Apache-FakeTable
+version: 0.01
+license: perl
+distribution_type: module
+requires: {}
+recommends: {}
+build_requires: {}
+conflicts: {}
+provides:
+  Apache::FakeTable:
+    file: lib/Apache/FakeTable.pm
+    version: 0.01
+  Apache::FakeTableHash:
+    file: lib/Apache/FakeTable.pm
+    version: 0.01
+generated_by: Module::Build version 0.20
