@@ -1,13 +1,24 @@
 package Apache::FakeTable;
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.02';
+$VERSION = '0.03';
+
+=begin comment
+
+Fake-out Module::Build. Delete if it ever changes to support =head1 headers
+other than all uppercase.
 
 =head1 NAME
 
 Apache::FakeTable - Pure Perl implementation of the Apache::Table interface.
 
-=head1 SYNOPSIS
+=end comment
+
+=head1 Name
+
+Apache::FakeTable - Pure Perl implementation of the Apache::Table interface.
+
+=head1 Synopsis
 
   use Apache::FakeTable;
 
@@ -22,7 +33,7 @@ Apache::FakeTable - Pure Perl implementation of the Apache::Table interface.
       print "$key: $val\n";
   }
 
-=head1 DESCRIPTION
+=head1 Description
 
 This class emulates the behavior of the L<Apache::Table|Apache::Table> class,
 and is designed to behave exactly like Apache::Table. This means that all keys
@@ -59,7 +70,7 @@ in turn.
 Otherwise, things should be quite hash-like, particularly when a key has only
 a single value.
 
-=head1 INTERFACE
+=head1 Interface
 
 =head3 new()
 
@@ -73,11 +84,11 @@ size of the table for storing values.
 =cut
 
 sub new {
-    # We actually ignore the optional argument.
+    # We actually ignore the optional initial size argument.
     my ($class, $r) = @_;
     unless (UNIVERSAL::isa($r, 'Apache')) {
         require Carp;
-        Carp::croak "Usage: " . __PACKAGE__ . "::new(pclass, r, nalloc=10)";
+        Carp::croak("Usage: " . __PACKAGE__ . "::new(pclass, r, nalloc=10)");
     }
     my $self = {};
     tie %{$self}, 'Apache::FakeTableHash';
@@ -97,7 +108,7 @@ only the first value when it is called in a scalar context.
 =cut
 
 sub get {
-    tied(%{shift()})->get(@_);
+    tied(%{shift()})->_get(@_);
 }
 
 =head3 set()
@@ -117,7 +128,7 @@ sub set {
     # Issue a warning if the value is undefined.
     if (! defined $value and $^W) {
         require Carp;
-        Carp::carp "Use of uninitialized value in null operation";
+        Carp::carp('Use of uninitialized value in null operation');
         $value = '';
     }
     $self->{$header} = $value;
@@ -164,10 +175,10 @@ sub add {
     # Issue a warning if the value is undefined.
     if (! defined $_[2] and $^W) {
         require Carp;
-        Carp::carp "Use of uninitialized value in null operation";
+        Carp::carp('Use of uninitialized value in null operation');
         $_[2] = '';
     }
-    tied(%{shift()})->add(@_);
+    tied(%{shift()})->_add(@_);
 }
 
 =head3 merge()
@@ -196,11 +207,11 @@ sub merge {
   $table->do($coderef);
 
 Pass a code reference to this method to have it iterate over all of the
-key/value pairs in the table. Keys will multiple values will trigger the
+key/value pairs in the table. Keys with multiple values will trigger the
 execution of the code reference multiple times, once for each value. The code
 reference should expect two arguments: a key and a value. Iteration terminates
 when the code reference returns false, so be sure to have it return a true
-value if you wan it to iterate over every value in the table.
+value if you want it to iterate over every value in the table.
 
 =cut
 
@@ -233,13 +244,13 @@ sub STORE {
     # Issue a warning if the value is undefined.
     if (! defined $value and $^W) {
         require Carp;
-        Carp::carp "Use of uninitialized value in null operation";
+        Carp::carp('Use of uninitialized value in null operation');
         $value = '';
     }
     $self->{lc $key} = [ $key => ["$value"] ];
 }
 
-sub add {
+sub _add {
     my ($self, $key, $value) = @_;
     my $ckey = lc $key;
     if (exists $self->{$ckey}) {
@@ -269,7 +280,7 @@ sub FETCH {
       : $val->[1][0];
 }
 
-sub get {
+sub _get {
     my ($self, $key) = @_;
     my $ckey = lc $key;
     # Prevent autovivication.
@@ -324,24 +335,37 @@ sub DESTROY { delete $curr_keys{shift()}; }
 1;
 __END__
 
-=head1 BUGS
+=head1 Support
 
-Report all bugs via the CPAN Request Tracker at
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Apache-FakeTable>.
+This module is stored in an open repository at the following address:
 
-=head1 SEE ALSO
+  L<https://svn.kineticode.com/Apache-FakeTable/trunk/>
+
+Patches against SVN::Notify are welcome. Please send bug reports to
+<bug-apache-faketable@rt.cpan.org>.
+
+=head1 See Also
 
 L<Apache::Table|Apache::Table>.
 
+=head1 Author
+
+=begin comment
+
+Fake-out Module::Build. Delete if it ever changes to support =head1 headers
+other than all uppercase.
+
 =head1 AUTHOR
+
+=end comment
 
 David Wheeler <david@kineticode.com>
 
-=head1 COPYRIGHT AND LICENSE
+=head1 Copyright and License
 
-Copyright (c) 2003, David Wheeler. All Rights Reserved.
+Copyright (c) 2003-2008, David Wheeler. All Rights Reserved.
 
-This module is free software; you can redistribute it and/or modify it under the
-same terms as Perl itself.
+This module is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =cut
