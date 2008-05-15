@@ -1,7 +1,7 @@
 package Apache::FakeTable;
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.03';
+$VERSION = '0.04';
 
 =begin comment
 
@@ -314,7 +314,7 @@ sub FIRSTKEY {
     my $self = shift;
     # Reset perl's iterator and then get the key.
     keys %$self;
-    $self->$keyer;
+    $self->$keyer();
 }
 
 sub NEXTKEY {
@@ -326,7 +326,7 @@ sub NEXTKEY {
       && ++$curr_keys{$self}->[1] <= $#{$self->{$ckey}[1]};
 
     # Otherwise, just get the next key.
-    $self->$keyer;
+    $self->$keyer();
 }
 
 # Just be sure to clear out the current key.
@@ -341,7 +341,7 @@ This module is stored in an open repository at the following address:
 
   L<https://svn.kineticode.com/Apache-FakeTable/trunk/>
 
-Patches against SVN::Notify are welcome. Please send bug reports to
+Patches against Apache::FakeTable are welcome. Please send bug reports to
 <bug-apache-faketable@rt.cpan.org>.
 
 =head1 See Also
@@ -363,7 +363,7 @@ David Wheeler <david@kineticode.com>
 
 =head1 Copyright and License
 
-Copyright (c) 2003-2008, David Wheeler. All Rights Reserved.
+Copyright (c) 2003-2008, David Wheeler. Some Rights Reserved.
 
 This module is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
