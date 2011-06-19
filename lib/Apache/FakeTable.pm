@@ -1,22 +1,11 @@
 package Apache::FakeTable;
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.04';
-
-=begin comment
-
-Fake-out Module::Build. Delete if it ever changes to support =head1 headers
-other than all uppercase.
-
-=head1 NAME
-
-Apache::FakeTable - Pure Perl implementation of the Apache::Table interface.
-
-=end comment
+$VERSION = '0.05';
 
 =head1 Name
 
-Apache::FakeTable - Pure Perl implementation of the Apache::Table interface.
+Apache::FakeTable - Pure Perl implementation of the Apache::Table interface
 
 =head1 Synopsis
 
@@ -24,7 +13,7 @@ Apache::FakeTable - Pure Perl implementation of the Apache::Table interface.
 
   my $table = Apache::FakeTable->new($r);
 
-  $table->set(From => 'david@kineticode.com');
+  $table->set(From => 'david@example.com');
 
   $table->add(Cookie => 'One Cookie');
   $table->add(Cookie => 'Another Cookie');
@@ -35,9 +24,9 @@ Apache::FakeTable - Pure Perl implementation of the Apache::Table interface.
 
 =head1 Description
 
-This class emulates the behavior of the L<Apache::Table|Apache::Table> class,
-and is designed to behave exactly like Apache::Table. This means that all keys
-are case-insensitive and may have multiple values. As a drop-in substitute for
+This class emulates the behavior of the L<Apache::Table> class, and is
+designed to behave exactly like Apache::Table. This means that all keys are
+case-insensitive and may have multiple values. As a drop-in substitute for
 Apache::Table, you should be able to use it exactly like Apache::Table.
 
 You can treat an Apache::FakeTable object much like any other hash. However,
@@ -77,9 +66,9 @@ a single value.
   my $table = Apache::FakeTable->new($r);
   $table = Apache::FakeTable->new($r, $initial_size);
 
-Returns a new C<Apache::FakeTable> object. An L<Apache|Apache> object is
-required as the first argument. An optional second argument sets the initial
-size of the table for storing values.
+Returns a new C<Apache::FakeTable> object. An L<Apache> object is required as
+the first argument. An optional second argument sets the initial size of the
+table for storing values.
 
 =cut
 
@@ -337,33 +326,25 @@ __END__
 
 =head1 Support
 
-This module is stored in an open repository at the following address:
+This module is stored in an open L<GitHub
+repository|http://github.com/theory/apache-faketable/>. Feel free to fork and
+contribute!
 
-  L<https://svn.kineticode.com/Apache-FakeTable/trunk/>
-
-Patches against Apache::FakeTable are welcome. Please send bug reports to
-<bug-apache-faketable@rt.cpan.org>.
+Please file bug reports via L<GitHub
+Issues|http://github.com/theory/apache-faketable/issues/> or by sending mail to
+L<bug-Apache-FakeTable@rt.cpan.org|mailto:bug-Apache-FakeTable@rt.cpan.org>.
 
 =head1 See Also
 
-L<Apache::Table|Apache::Table>.
+L<Apache::Table>.
 
 =head1 Author
 
-=begin comment
-
-Fake-out Module::Build. Delete if it ever changes to support =head1 headers
-other than all uppercase.
-
-=head1 AUTHOR
-
-=end comment
-
-David Wheeler <david@kineticode.com>
+David E. Wheeler <david@justatheory.com>
 
 =head1 Copyright and License
 
-Copyright (c) 2003-2008, David Wheeler. Some Rights Reserved.
+Copyright (c) 2003-2011, David E. Wheeler. Some Rights Reserved.
 
 This module is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
