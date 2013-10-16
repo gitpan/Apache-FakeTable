@@ -1,7 +1,7 @@
 package Apache::FakeTable;
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.05';
+$VERSION = '0.06';
 
 =head1 Name
 
@@ -165,7 +165,7 @@ sub add {
     if (! defined $_[2] and $^W) {
         require Carp;
         Carp::carp('Use of uninitialized value in null operation');
-        $_[2] = '';
+        splice @_, 2, 1, '';
     }
     tied(%{shift()})->_add(@_);
 }
@@ -218,7 +218,8 @@ sub do {
 ##############################################################################
 # This is the implementation of the case-insensitive hash that each table
 # object is based on.
-package Apache::FakeTableHash;
+package
+Apache::FakeTableHash;
 use strict;
 my %curr_keys;
 

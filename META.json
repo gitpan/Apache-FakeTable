@@ -4,7 +4,7 @@
       "David E. Wheeler <david@justatheory.com>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.110440",
+   "generated_by" : "Module::Build version 0.4007, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -34,11 +34,7 @@
    "provides" : {
       "Apache::FakeTable" : {
          "file" : "lib/Apache/FakeTable.pm",
-         "version" : "0.05"
-      },
-      "Apache::FakeTableHash" : {
-         "file" : "lib/Apache/FakeTable.pm",
-         "version" : 0
+         "version" : "0.06"
       }
    },
    "release_status" : "stable",
@@ -54,5 +50,5 @@
          "url" : "http://github.com/theory/apache-faketable/"
       }
    },
-   "version" : "0.05"
+   "version" : "0.06"
 }

@@ -8,7 +8,7 @@ build_requires:
 configure_requires:
   Module::Build: 0.2701
 dynamic_config: 1
-generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.110440'
+generated_by: 'Module::Build version 0.4007, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,10 +17,7 @@ name: Apache-FakeTable
 provides:
   Apache::FakeTable:
     file: lib/Apache/FakeTable.pm
-    version: 0.05
-  Apache::FakeTableHash:
-    file: lib/Apache/FakeTable.pm
-    version: 0
+    version: 0.06
 recommends:
   Test::Pod: 1.41
 resources:
@@ -28,4 +25,4 @@ resources:
   homepage: http://search.cpan.org/dist/Apache-FakeTable/
   license: http://dev.perl.org/licenses/
   repository: http://github.com/theory/apache-faketable/
-version: 0.05
+version: 0.06
